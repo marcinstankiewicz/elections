@@ -1,0 +1,109 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="messi (generated)" id="1777923118910-1">
+        <createTable tableName="Election">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ElectionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-2">
+        <createTable tableName="Option">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="OptionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="election_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-3">
+        <createTable tableName="Vote">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="VotePK"/>
+            </column>
+            <column name="election_id" type="BIGINT"/>
+            <column name="option_id" type="BIGINT"/>
+            <column name="voter_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-4">
+        <createTable tableName="Voter">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="VoterPK"/>
+            </column>
+            <column name="blocked" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-5">
+        <addUniqueConstraint columnNames="voter_id, election_id" constraintName="UKjatily8wtiq9ttodg040xuknf" tableName="Vote"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-6">
+        <addForeignKeyConstraint baseColumnNames="election_id" baseTableName="Option" constraintName="FKdx724fsjasldt1tc06qks2al1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Election" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-7">
+        <addForeignKeyConstraint baseColumnNames="voter_id" baseTableName="Vote" constraintName="FKeniej551p7yqw5e5nheko3d8g" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Voter" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-8">
+        <addForeignKeyConstraint baseColumnNames="election_id" baseTableName="Vote" constraintName="FKowg9hhc90n8oy8bcu2q9xu6t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Election" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923118910-9">
+        <addForeignKeyConstraint baseColumnNames="option_id" baseTableName="Vote" constraintName="FKs8vkfftku4k305qbcsh5skb4i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Option" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-1">
+        <createTable tableName="Election">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ElectionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-2">
+        <createTable tableName="Option">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="OptionPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="election_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-3">
+        <createTable tableName="Vote">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="VotePK"/>
+            </column>
+            <column name="election_id" type="BIGINT"/>
+            <column name="option_id" type="BIGINT"/>
+            <column name="voter_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-4">
+        <createTable tableName="Voter">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="VoterPK"/>
+            </column>
+            <column name="blocked" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-5">
+        <addUniqueConstraint columnNames="voter_id, election_id" constraintName="UKjatily8wtiq9ttodg040xuknf" tableName="Vote"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-6">
+        <addForeignKeyConstraint baseColumnNames="election_id" baseTableName="Option" constraintName="FKdx724fsjasldt1tc06qks2al1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Election" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-7">
+        <addForeignKeyConstraint baseColumnNames="voter_id" baseTableName="Vote" constraintName="FKeniej551p7yqw5e5nheko3d8g" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Voter" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-8">
+        <addForeignKeyConstraint baseColumnNames="election_id" baseTableName="Vote" constraintName="FKowg9hhc90n8oy8bcu2q9xu6t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Election" validate="true"/>
+    </changeSet>
+    <changeSet author="messi (generated)" id="1777923139804-9">
+        <addForeignKeyConstraint baseColumnNames="option_id" baseTableName="Vote" constraintName="FKs8vkfftku4k305qbcsh5skb4i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Option" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

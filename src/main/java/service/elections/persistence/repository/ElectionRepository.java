@@ -1,6 +1,6 @@
-package service.elections.repository;
+package service.elections.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import service.elections.model.Election;
+import service.elections.persistence.model.Election;
 
 public interface ElectionRepository extends JpaRepository<Election, Long> {}

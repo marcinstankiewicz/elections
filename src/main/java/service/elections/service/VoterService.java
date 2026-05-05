@@ -2,18 +2,19 @@ package service.elections.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import service.elections.model.Voter;
-import service.elections.repository.VoterRepository;
+import service.elections.controller.dto.VoterResponseDTO;
+import service.elections.persistence.model.Voter;
+import service.elections.persistence.repository.VoterRepository;
 
 @RequiredArgsConstructor
 @Service
 public class VoterService {
     private final VoterRepository repo;
 
-    public Voter addVoter(String name) {
+    public VoterResponseDTO addVoter(String name) {
         Voter voter = new Voter();
         voter.setName(name);
-        return repo.save(voter);
+        return new VoterResponseDTO(repo.save(voter).getId());
     }
 
     public void block(Long id) {

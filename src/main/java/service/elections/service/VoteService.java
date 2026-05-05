@@ -2,14 +2,15 @@ package service.elections.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import service.elections.model.Election;
-import service.elections.model.Option;
-import service.elections.model.Vote;
-import service.elections.model.Voter;
-import service.elections.repository.ElectionRepository;
-import service.elections.repository.OptionRepository;
-import service.elections.repository.VoteRepository;
-import service.elections.repository.VoterRepository;
+import service.elections.controller.dto.VoteRequestDTO;
+import service.elections.persistence.model.Election;
+import service.elections.persistence.model.Option;
+import service.elections.persistence.model.Vote;
+import service.elections.persistence.model.Voter;
+import service.elections.persistence.repository.ElectionRepository;
+import service.elections.persistence.repository.OptionRepository;
+import service.elections.persistence.repository.VoteRepository;
+import service.elections.persistence.repository.VoterRepository;
 
 @RequiredArgsConstructor
 @Service
@@ -19,21 +20,20 @@ public class VoteService {
     private final ElectionRepository electionRepo;
     private final OptionRepository optionRepo;
 
-    public void vote(Long voterId, Long electionId, Long optionId) {
-
-        Voter voter = voterRepo.findById(voterId).orElseThrow();
+    public void vote(VoteRequestDTO voteRequestDTO) {
+        Voter voter = voterRepo.findById(voteRequestDTO.voterId()).orElseThrow();
         if (voter.isBlocked()) {
             throw new RuntimeException("Voter is blocked");
         }
 
-        if (voteRepo.existsByVoterIdAndElectionId(voterId, electionId)) {
+        if (voteRepo.existsByVoterIdAndElectionId(voteRequestDTO.voterId(), voteRequestDTO.electionId())) {
             throw new RuntimeException("Already voted");
         }
 
-        Election election = electionRepo.findById(electionId).orElseThrow();
-        Option option = optionRepo.findById(optionId).orElseThrow();
+        Election election = electionRepo.findById(voteRequestDTO.electionId()).orElseThrow();
+        Option option = optionRepo.findById(voteRequestDTO.optionId()).orElseThrow();
 
-        if (!option.getElection().getId().equals(electionId)) {
+        if (!option.getElection().getId().equals(voteRequestDTO.electionId())) {
             throw new RuntimeException("Option not in this election");
         }
 

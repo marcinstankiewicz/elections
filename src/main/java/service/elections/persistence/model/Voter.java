@@ -1,4 +1,4 @@
-package service.elections.model;
+package service.elections.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

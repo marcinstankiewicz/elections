@@ -2,7 +2,7 @@ package service.elections.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import service.elections.controller.dto.VoterResponseDTO;
+import service.elections.controller.dto.AddVoterResponseDTO;
 import service.elections.persistence.model.Voter;
 import service.elections.persistence.repository.VoterRepository;
 
@@ -11,10 +11,10 @@ import service.elections.persistence.repository.VoterRepository;
 public class VoterService {
     private final VoterRepository repo;
 
-    public VoterResponseDTO addVoter(String name) {
+    public AddVoterResponseDTO addVoter(String name) {
         Voter voter = new Voter();
         voter.setName(name);
-        return new VoterResponseDTO(repo.save(voter).getId());
+        return new AddVoterResponseDTO(repo.save(voter).getId());
     }
 
     public void block(Long id) {

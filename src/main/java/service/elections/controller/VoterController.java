@@ -2,7 +2,7 @@ package service.elections.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import service.elections.controller.dto.VoterResponseDTO;
+import service.elections.controller.dto.AddVoterResponseDTO;
 import service.elections.service.VoterService;
 
 @RestController
@@ -12,7 +12,7 @@ public class VoterController {
     private final VoterService service;
 
     @PostMapping
-    public VoterResponseDTO add(@RequestParam String name) {
+    public AddVoterResponseDTO add(@RequestParam String name) {
         return service.addVoter(name);
     }
 

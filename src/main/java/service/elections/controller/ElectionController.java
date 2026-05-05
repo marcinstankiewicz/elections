@@ -10,7 +10,7 @@ import service.elections.service.ElectionService;
 @RequiredArgsConstructor
 @RequestMapping("/elections")
 public class ElectionController {
-    private ElectionService electionService;
+    private final ElectionService electionService;
 
     @PostMapping
     public ElectionResponseDTO create(@RequestParam String name) {

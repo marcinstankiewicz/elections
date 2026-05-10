@@ -50,3 +50,9 @@ Invalid operations throw runtime exceptions
 ## Generate DB changes
 Check file target/generated-diff.xml and adjust the changelog\
 `mvn clean compile liquibase:diff`
+
+## Swagger
+`http://localhost:8080/swagger-ui/index.html`
+
+## Swagger yaml
+`http://localhost:8080/v3/api-docs`
